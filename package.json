@@ -10,22 +10,26 @@
     "@types/node": "^20.3.2",
     "@types/react": "^18.2.14",
     "@types/react-dom": "^18.2.6",
+    "axios": "^1.4.0",
+    "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.10.1",
     "react-loading-skeleton": "^3.3.1",
+    "react-router-dom": "^6.14.1",
     "react-scripts": "5.0.1",
     "sass": "^1.63.6",
-    "typescript": "^5.1.6",
+    "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-app-rewired start",
-    "lint:check": "eslint 'src/**/*.ts'",
-    "lint:fix": "eslint 'src/**/*.ts' --fix",
-    "prettier:check": "prettier --check 'src/**/*.{ts,tsx,json}'",
-    "prettier:fix": "prettier --write 'src/**/*.{ts,tsx,json}'",
-    "build": "CI=false react-app-rewired build",
-    "test": "react-app-rewired test --coverage --forceExit --detectOpenHandles --watchAll=false"
+    "start": "react-scripts start",
+    "lint:check": "eslint \"src/**/*.tsx\"",
+    "lint:fix": "eslint \"src/**/*.tsx\" --fix",
+    "prettier:check": "prettier --check \"src/**/*.{ts,tsx,json}\"",
+    "prettier:fix": "prettier --write \"src/**/*.{ts,tsx,json}\"",
+    "build": "react-scripts build",
+    "test": "react-scripts test"
   },
   "eslintConfig": {
     "extends": [
@@ -59,6 +63,8 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "ttypescript": "^1.5.15",
+    "typescript-transform-paths": "^3.4.6"
   }
 }
