@@ -6,7 +6,7 @@ type InputProps = {
   type: string;
   id?: string;
   labelText?: string;
-  value?: string;
+  value?: string | number;
   className?: string;
   placeholder?: string;
   handleChange?: (event: ChangeEvent<HTMLInputElement>) => void;

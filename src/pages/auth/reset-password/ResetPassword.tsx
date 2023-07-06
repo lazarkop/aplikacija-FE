@@ -1,10 +1,11 @@
-import "@pages/auth/reset-password/ResetPassword.scss";
-import { useState } from "react";
+import "src/pages/auth/reset-password/ResetPassword.scss";
+import React, { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
-import Input from "@components/input/Input";
-import Button from "@components/button/Button";
+import Input from "src/components/input/Input";
+import Button from "src/components/button/Button";
 import { Link, useSearchParams } from "react-router-dom";
-import { authService } from "@services/api/auth/auth.service";
+import { authService } from "src/services/api/auth/auth.service";
+import axios from "axios";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState("");
@@ -15,15 +16,13 @@ const ResetPassword = () => {
   const [responseMessage, setResponseMessage] = useState("");
   const [searchParams] = useSearchParams();
 
-  const resetPassword = async (event) => {
+  const resetPassword = async (event: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     event.preventDefault();
     try {
       const body = { password, confirmPassword };
-      const response = await authService.resetPassword(
-        searchParams.get("token"),
-        body
-      );
+      const token = searchParams.get("token") as string;
+      const response = await authService.resetPassword(token, body);
       setLoading(false);
       setPassword("");
       setConfirmPassword("");
@@ -34,7 +33,12 @@ const ResetPassword = () => {
       setAlertType("alert-error");
       setLoading(false);
       setShowAlert(true);
-      setResponseMessage(error?.response?.data?.message);
+
+      if (axios.isAxiosError(error)) {
+        setResponseMessage(error?.response?.data.message);
+      } else {
+        console.error(String(error));
+      }
     }
   };
 
