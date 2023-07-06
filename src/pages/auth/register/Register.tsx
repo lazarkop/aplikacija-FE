@@ -1,13 +1,14 @@
-import Input from "@components/input/Input";
-import Button from "@components/button/Button";
-import "@pages/auth/register/Register.scss";
-import { useState, useEffect } from "react";
-import { Utils } from "@services/utils/utils.service";
-import { authService } from "@services/api/auth/auth.service";
+import Input from "src/components/input/Input";
+import Button from "src/components/button/Button";
+import "src/pages/auth/register/Register.scss";
+import React, { useState, useEffect } from "react";
+import { Utils } from "src/services/utils/utils.service";
+import { authService } from "src/services/api/auth/auth.service";
 import { useNavigate } from "react-router-dom";
-import useLocalStorage from "@hooks/useLocalStorage";
-import useSessionStorage from "@hooks/useSessionStorage";
+import useLocalStorage from "src/hooks/useLocalStorage";
+import useSessionStorage from "src/hooks/useSessionStorage";
 import { useDispatch } from "react-redux";
+import axios from "axios";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -18,13 +19,13 @@ const Register = () => {
   const [alertType, setAlertType] = useState("");
   const [hasError, setHasError] = useState(false);
   const [user, setUser] = useState();
-  const [setStoredUsername] = useLocalStorage("username", "set");
-  const [setLoggedIn] = useLocalStorage("keepLoggedIn", "set");
-  const [pageReload] = useSessionStorage("pageReload", "set");
+  const setStoredUsername = useLocalStorage("username", "set");
+  const setLoggedIn = useLocalStorage("keepLoggedIn", "set");
+  const pageReload = useSessionStorage("pageReload", "set");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const registerUser = async (event) => {
+  const registerUser = async (event: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     event.preventDefault();
     try {
@@ -48,7 +49,12 @@ const Register = () => {
       setLoading(false);
       setHasError(true);
       setAlertType("alert-error");
-      setErrorMessage(error?.response?.data?.message);
+
+      if (axios.isAxiosError(error)) {
+        setErrorMessage(error?.response?.data.message);
+      } else {
+        console.error(String(error));
+      }
     }
   };
 

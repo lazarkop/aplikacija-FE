@@ -1,14 +1,15 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FaArrowRight } from "react-icons/fa";
-import Input from "@components/input/Input";
-import Button from "@components/button/Button";
+import Input from "src/components/input/Input";
+import Button from "src/components/button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import "@pages/auth/login/Login.scss";
-import { authService } from "@services/api/auth/auth.service";
-import useLocalStorage from "@hooks/useLocalStorage";
-import { Utils } from "@services/utils/utils.service";
-import useSessionStorage from "@hooks/useSessionStorage";
+import "src/pages/auth/login/Login.scss";
+import { authService } from "src/services/api/auth/auth.service";
+import useLocalStorage from "src/hooks/useLocalStorage";
+import { Utils } from "src/services/utils/utils.service";
+import useSessionStorage from "src/hooks/useSessionStorage";
+import axios from "axios";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -19,13 +20,13 @@ const Login = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [alertType, setAlertType] = useState("");
   const [user, setUser] = useState();
-  const [setStoredUsername] = useLocalStorage("username", "set");
-  const [setLoggedIn] = useLocalStorage("keepLoggedIn", "set");
-  const [pageReload] = useSessionStorage("pageReload", "set");
+  const setStoredUsername = useLocalStorage("username", "set");
+  const setLoggedIn = useLocalStorage("keepLoggedIn", "set");
+  const pageReload = useSessionStorage("pageReload", "set");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const loginUser = async (event) => {
+  const loginUser = async (event: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     event.preventDefault();
     try {
@@ -42,7 +43,12 @@ const Login = () => {
       setLoading(false);
       setHasError(true);
       setAlertType("alert-error");
-      setErrorMessage(error?.response?.data.message);
+
+      if (axios.isAxiosError(error)) {
+        setErrorMessage(error?.response?.data.message);
+      } else {
+        console.error(String(error));
+      }
     }
   };
 
@@ -85,7 +91,7 @@ const Login = () => {
               id="checkbox"
               name="checkbox"
               type="checkbox"
-              value={keepLoggedIn}
+              value={String(keepLoggedIn)}
               handleChange={() => setKeepLoggedIn(!keepLoggedIn)}
             />
             Keep me signed in

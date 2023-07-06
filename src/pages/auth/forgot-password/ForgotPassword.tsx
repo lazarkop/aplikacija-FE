@@ -1,10 +1,11 @@
 import { FaArrowLeft } from "react-icons/fa";
-import { useState } from "react";
-import Input from "@components/input/Input";
-import Button from "@components/button/Button";
+import React, { useState } from "react";
+import Input from "src/components/input/Input";
+import Button from "src/components/button/Button";
 import { Link } from "react-router-dom";
-import "@pages/auth/forgot-password/ForgotPassword.scss";
-import { authService } from "@services/api/auth/auth.service";
+import "src/pages/auth/forgot-password/ForgotPassword.scss";
+import { authService } from "src/services/api/auth/auth.service";
+import axios from "axios";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const ForgotPassword = () => {
   const [alertType, setAlertType] = useState("");
   const [responseMessage, setResponseMessage] = useState("");
 
-  const forgotPassword = async (event) => {
+  const forgotPassword = async (event: React.FormEvent<HTMLFormElement>) => {
     setLoading(true);
     event.preventDefault();
     try {
@@ -27,7 +28,11 @@ const ForgotPassword = () => {
       setAlertType("alert-error");
       setLoading(false);
       setShowAlert(true);
-      setResponseMessage(error?.response?.data?.message);
+      if (axios.isAxiosError(error)) {
+        setResponseMessage(error?.response?.data.message);
+      } else {
+        console.error(String(error));
+      }
     }
   };
 
