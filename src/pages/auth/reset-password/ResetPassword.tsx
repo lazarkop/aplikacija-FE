@@ -1,11 +1,11 @@
-import "src/pages/auth/reset-password/ResetPassword.scss";
+import "./ResetPassword.scss";
 import React, { useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
-import Input from "src/components/input/Input";
-import Button from "src/components/button/Button";
 import { Link, useSearchParams } from "react-router-dom";
-import { authService } from "src/services/api/auth/auth.service";
 import axios from "axios";
+import { authService } from "../../../services/api/auth/auth.service";
+import Button from "../../../components/button/Button";
+import Input from "../../../components/input/Input";
 
 const ResetPassword = () => {
   const [password, setPassword] = useState("");

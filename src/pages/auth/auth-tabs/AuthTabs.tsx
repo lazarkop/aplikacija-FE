@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import "src/pages/auth/auth-tabs/AuthTabs.scss";
-import Login from "src/pages/auth/login/Login";
-import Register from "src/pages/auth/register/Register";
-import useLocalStorage from "src/hooks/useLocalStorage";
+import "./AuthTabs.scss";
 import { useNavigate } from "react-router-dom";
+import useLocalStorage from "../../../hooks/useLocalStorage";
+import Login from "../login/Login";
+import Register from "../register/Register";
 
 const AuthTabs = () => {
   const [type, setType] = useState("Sign In");

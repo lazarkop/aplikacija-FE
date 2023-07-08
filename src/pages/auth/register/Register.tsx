@@ -1,14 +1,14 @@
-import Input from "src/components/input/Input";
-import Button from "src/components/button/Button";
-import "src/pages/auth/register/Register.scss";
+import "./Register.scss";
 import React, { useState, useEffect } from "react";
-import { Utils } from "src/services/utils/utils.service";
-import { authService } from "src/services/api/auth/auth.service";
 import { useNavigate } from "react-router-dom";
-import useLocalStorage from "src/hooks/useLocalStorage";
-import useSessionStorage from "src/hooks/useSessionStorage";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import useLocalStorage from "../../../hooks/useLocalStorage";
+import useSessionStorage from "../../../hooks/useSessionStorage";
+import { Utils } from "../../../services/utils/utils.service";
+import { authService } from "../../../services/api/auth/auth.service";
+import Input from "../../../components/input/Input";
+import Button from "../../../components/button/Button";
 
 const Register = () => {
   const [username, setUsername] = useState("");

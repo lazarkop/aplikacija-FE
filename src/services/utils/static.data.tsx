@@ -1,13 +1,13 @@
-import blessed from "src/assets/feelings/blessed.jpg";
-import excited from "src/assets/feelings/excited.jpg";
-import happyFeelings from "src/assets/feelings/happy.jpg";
-import loved from "src/assets/feelings/loved.jpg";
-import angry from "src/assets/reactions/angry.png";
-import happy from "src/assets/reactions/happy.png";
-import like from "src/assets/reactions/like.png";
-import love from "src/assets/reactions/love.png";
-import sad from "src/assets/reactions/sad.png";
-import wow from "src/assets/reactions/wow.png";
+import blessed from "../../assets/feelings/blessed.jpg";
+import excited from "../../assets/feelings/excited.jpg";
+import happyFeelings from "../../assets/feelings/happy.jpg";
+import loved from "../../assets/feelings/loved.jpg";
+import angry from "../../assets/reactions/angry.png";
+import happy from "../../assets/reactions/happy.png";
+import like from "../../assets/reactions/like.png";
+import love from "../../assets/reactions/love.png";
+import sad from "../../assets/reactions/sad.png";
+import wow from "../../assets/reactions/wow.png";
 import {
   FaBirthdayCake,
   FaComments,

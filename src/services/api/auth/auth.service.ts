@@ -1,4 +1,4 @@
-import axios from 'src/services/axios';
+import axios from '../../axios';
 
 interface ISignInRequest {
   password: string;

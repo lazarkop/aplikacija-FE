@@ -1,5 +1,5 @@
 {
-  "name": "aplikacija-frontend",
+  "name": "app-fe",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -11,6 +11,7 @@
     "@types/node": "^20.3.2",
     "@types/react-dom": "^18.2.6",
     "axios": "^1.4.0",
+    "history": "^5.3.0",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -30,7 +31,7 @@
     "prettier:check": "prettier --check \"src/**/*.{ts,tsx,json}\"",
     "prettier:fix": "prettier --write \"src/**/*.{ts,tsx,json}\"",
     "build": "react-scripts build",
-    "test": "react-scripts test"
+    "test": "react-scripts test --coverage --forceExit --detectOpenHandles --watchAll=false --transformIgnorePatterns \"node_modules/(?!axios)/\""
   },
   "eslintConfig": {
     "extends": [
@@ -68,6 +69,9 @@
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "msw": "^1.2.2",
     "prettier": "^2.8.8"
   }
 }
+
+

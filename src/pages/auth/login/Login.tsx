@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { FaArrowRight } from "react-icons/fa";
-import Input from "src/components/input/Input";
-import Button from "src/components/button/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import "src/pages/auth/login/Login.scss";
-import { authService } from "src/services/api/auth/auth.service";
-import useLocalStorage from "src/hooks/useLocalStorage";
-import { Utils } from "src/services/utils/utils.service";
-import useSessionStorage from "src/hooks/useSessionStorage";
+import "./Login.scss";
 import axios from "axios";
+import useLocalStorage from "../../../hooks/useLocalStorage";
+import useSessionStorage from "../../../hooks/useSessionStorage";
+import { authService } from "../../../services/api/auth/auth.service";
+import { Utils } from "../../../services/utils/utils.service";
+import Input from "../../../components/input/Input";
+import Button from "../../../components/button/Button";
 
 const Login = () => {
   const [username, setUsername] = useState("");
