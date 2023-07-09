@@ -1,6 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+type userPofile = {
+  username: string;
+};
+
+interface IinitialState {
+  token: string;
+  profile: null | userPofile;
+}
+
+const initialState: IinitialState = {
   token: '',
   profile: null,
 };

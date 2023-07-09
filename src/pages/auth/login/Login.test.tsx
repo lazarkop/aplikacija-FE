@@ -1,60 +1,70 @@
 import userEvent from "@testing-library/user-event";
 import { act } from "react-dom/test-utils";
-import { signupMockError } from "../../../mocks/handlers/auth";
-import { render, screen, waitFor } from "../../../test.utils";
+import { signInMockError } from "../../../mocks/handlers/auth";
+import { fireEvent, waitFor, render, screen } from "../../../test.utils";
 import { server } from "../../../mocks/server";
-import { Utils } from "../../../services/utils/utils.service";
-import Register from "./Register";
+import Login from "./Login";
 
-const mockedUseNavigate = jest.fn();
+const mockedUsedNavigate = jest.fn();
 jest.mock("react-router-dom", () => ({
   ...jest.requireActual("react-router-dom"),
-  useNavigate: () => mockedUseNavigate,
+  useNavigate: () => mockedUsedNavigate,
 }));
 
-describe("Register", () => {
-  it("signup form should have its labels", () => {
-    render(<Register />);
+describe("SigIn", () => {
+  it("signin form should have its labels", () => {
+    render(<Login />);
     const usernameElement = screen.getByLabelText("Username");
-    const emailElement = screen.getByLabelText("Email");
     const passwordElement = screen.getByLabelText("Password");
-
+    const checkBoxLabel = screen.getByLabelText("Keep me signed in");
     expect(usernameElement).toBeInTheDocument();
-    expect(emailElement).toBeInTheDocument();
     expect(passwordElement).toBeInTheDocument();
+    expect(checkBoxLabel).toBeInTheDocument();
+  });
+
+  it("checkbox should be unchecked", () => {
+    render(<Login />);
+    const checkBoxElement = screen.getByLabelText(/Keep me signed in/i);
+    expect(checkBoxElement).not.toBeChecked();
+  });
+
+  it("checkbox should be checked when clicked", () => {
+    render(<Login />);
+    const checkBoxElement = screen.getByLabelText("Keep me signed in");
+    expect(checkBoxElement).not.toBeChecked();
+
+    fireEvent.click(checkBoxElement);
+    expect(checkBoxElement).toBeChecked();
   });
 
   describe("Button", () => {
     it("should be disabled", () => {
-      render(<Register />);
+      render(<Login />);
       const buttonElement = screen.getByRole("button");
       expect(buttonElement).toBeDisabled();
     });
 
-    it("should be enabled with input values", () => {
-      render(<Register />);
+    it("should be enabled with inputs", () => {
+      render(<Login />);
       const buttonElement = screen.getByRole("button");
+      expect(buttonElement).toBeDisabled();
+
       const usernameElement = screen.getByLabelText("Username");
-      const emailElement = screen.getByLabelText("Email");
       const passwordElement = screen.getByLabelText("Password");
 
-      userEvent.type(usernameElement, "manny");
-      userEvent.type(emailElement, "manny@test.com");
-      userEvent.type(passwordElement, "qwerty");
+      fireEvent.change(usernameElement, { target: { value: "manny" } });
+      fireEvent.change(passwordElement, { target: { value: "qwerty" } });
 
       expect(buttonElement).toBeEnabled();
     });
 
     it("should change label when clicked", async () => {
-      jest.spyOn(Utils, "generateAvatar").mockReturnValue("avatar image");
-      render(<Register />);
+      render(<Login />);
       const buttonElement = screen.getByRole("button");
       const usernameElement = screen.getByLabelText("Username");
-      const emailElement = screen.getByLabelText("Email");
       const passwordElement = screen.getByLabelText("Password");
 
       userEvent.type(usernameElement, "manny");
-      userEvent.type(emailElement, "manny@test.com");
       userEvent.type(passwordElement, "qwerty");
 
       await act(() => {
@@ -63,44 +73,35 @@ describe("Register", () => {
 
       await waitFor(() => {
         const newButtonElement = screen.getByRole("button");
-        expect(newButtonElement.textContent).toEqual("SIGNUP IN PROGRESS...");
+        expect(newButtonElement.textContent).toEqual("SIGNIN IN PROGRESS...");
       });
     });
   });
 
   describe("Success", () => {
     it("should navigate to streams page", async () => {
-      jest.spyOn(Utils, "generateAvatar").mockReturnValue("avatar image");
-      render(<Register />);
+      render(<Login />);
       const buttonElement = screen.getByRole("button");
       const usernameElement = screen.getByLabelText("Username");
-      const emailElement = screen.getByLabelText("Email");
       const passwordElement = screen.getByLabelText("Password");
-
       userEvent.type(usernameElement, "manny");
-      userEvent.type(emailElement, "manny@test.com");
       userEvent.type(passwordElement, "qwerty");
-
       userEvent.click(buttonElement);
 
       await waitFor(() =>
-        expect(mockedUseNavigate).toHaveBeenCalledWith("/app/social/streams")
+        expect(mockedUsedNavigate).toHaveBeenCalledWith("/app/social/streams")
       );
     });
   });
 
   describe("Error", () => {
     it("should display error alert and border", async () => {
-      server.use(signupMockError);
-      jest.spyOn(Utils, "generateAvatar").mockReturnValue("avatar image");
-      render(<Register />);
+      server.use(signInMockError);
+      render(<Login />);
       const buttonElement = screen.getByRole("button");
       const usernameElement = screen.getByLabelText("Username");
-      const emailElement = screen.getByLabelText("Email");
       const passwordElement = screen.getByLabelText("Password");
-
-      userEvent.type(usernameElement, "manny");
-      userEvent.type(emailElement, "manny@test.com");
+      userEvent.type(usernameElement, "ma");
       userEvent.type(passwordElement, "qwerty");
       userEvent.click(buttonElement);
 
@@ -110,9 +111,6 @@ describe("Register", () => {
 
       await waitFor(() =>
         expect(usernameElement).toHaveStyle({ border: "1px solid #fa9b8a" })
-      );
-      await waitFor(() =>
-        expect(emailElement).toHaveStyle({ border: "1px solid #fa9b8a" })
       );
       await waitFor(() =>
         expect(passwordElement).toHaveStyle({ border: "1px solid #fa9b8a" })
