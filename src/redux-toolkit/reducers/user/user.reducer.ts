@@ -1,15 +1,51 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { ObjectId } from 'mongodb';
+import { ObjectId as mongooseObjectId } from 'mongoose';
 
-type userPofile = {
-  username: string;
-};
-
-interface IinitialState {
-  token: string;
-  profile: null | userPofile;
+interface INotificationSettings {
+  messages: boolean;
+  reactions: boolean;
+  comments: boolean;
+  follows: boolean;
+}
+interface ISocialLinks {
+  facebook: string;
+  instagram: string;
+  twitter: string;
+  youtube: string;
 }
 
-const initialState: IinitialState = {
+export interface IUserDocument {
+  _id: string;
+  authId: string | ObjectId;
+  username?: string;
+  email?: string;
+  password?: string;
+  avatarColor?: string;
+  uId?: string;
+  postsCount: number;
+  work: string;
+  school: string;
+  quote: string;
+  location: string;
+  blocked: mongooseObjectId[];
+  blockedBy: mongooseObjectId[];
+  followersCount: number;
+  followingCount: number;
+  notifications: INotificationSettings;
+  social: ISocialLinks;
+  bgImageVersion: string;
+  bgImageId: string;
+  profilePicture: string;
+  createdAt?: Date;
+}
+
+export interface IUserState {
+  token: string;
+  profile: null | IUserDocument;
+}
+
+const initialState: IUserState = {
   token: '',
   profile: null,
 };

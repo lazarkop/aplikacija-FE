@@ -34,8 +34,13 @@ const Login = () => {
         username,
         password,
       });
-      setLoggedIn(keepLoggedIn);
-      setStoredUsername(username);
+      if (typeof setLoggedIn === "function") {
+        setLoggedIn(keepLoggedIn);
+      }
+      if (typeof setStoredUsername === "function") {
+        setStoredUsername(username);
+      }
+
       setHasError(false);
       setAlertType("alert-success");
       Utils.dispatchUser(result, pageReload, dispatch, setUser);

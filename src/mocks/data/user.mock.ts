@@ -26,6 +26,7 @@ export const existingUser = {
   profilePicture: 'http://place-hold.it/500x500',
   _id: '60263f14648fed5246e322d9',
   uId: '1621613119252066',
+  authId: '545454545454545',
   username: 'Manny',
   email: 'manny@test.com',
   avatarColor: 'red',
@@ -33,7 +34,7 @@ export const existingUser = {
   school: 'University of Benin',
   location: 'Dusseldorf, Germany',
   quote: 'Sky is my limit',
-  createdAt: '2022-06-15',
+  createdAt: new Date('2022-06-15'),
 };
 
 export const existingUserTwo = {
@@ -64,6 +65,7 @@ export const existingUserTwo = {
   profilePicture: 'http://place-hold.it/500x500',
   _id: '60263f14648fed5246e322d8',
   uId: '1621613119252065',
+  authId: '48448484848484848',
   username: 'Danny',
   email: 'danny@test.com',
   avatarColor: '#9c27b1',
@@ -71,7 +73,7 @@ export const existingUserTwo = {
   school: 'University of Benin',
   location: 'Dusseldorf, Germany',
   quote: 'Sky is my limit',
-  createdAt: '2022-06-15',
+  createdAt: new Date('2022-06-15'),
 };
 
 export const existingUserThree = {

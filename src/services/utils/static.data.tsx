@@ -14,16 +14,26 @@ import {
   FaGlobe,
   FaHeart,
   FaImages,
+  FaKey,
   FaLock,
   FaNewspaper,
   FaRegBell,
   FaRegUser,
+  FaUser,
   FaUserCheck,
   FaUserPlus,
   FaUsers,
 } from "react-icons/fa";
+import React from "react";
 
-export const sideBarItems = [
+export interface ISidebarItem {
+  index: number;
+  name: string;
+  url: string;
+  iconName: string;
+}
+
+export const sideBarItems: ISidebarItem[] = [
   {
     index: 1,
     name: "Streams",
@@ -97,7 +107,7 @@ export const feelingsList = [
   },
 ];
 
-export const fontAwesomeIcons = {
+export const fontAwesomeIcons: { [key: string]: React.JSX.Element } = {
   FaNewspaper: <FaNewspaper className="icon" />,
   FaComments: <FaComments className="icon" />,
   FaUsers: <FaUsers className="icon" />,
@@ -190,7 +200,7 @@ export const emptyPostData = {
   createdAt: "",
 };
 
-export const reactionsMap = {
+export const reactionsMap: { [key: string]: string } = {
   like,
   love,
   wow,
@@ -239,34 +249,33 @@ export const notificationItems = [
   },
 ];
 
-/* export const tabItems = (showPassword, showNotification) => {
+export const tabItems = (showPassword: boolean, showNotification: boolean) => {
   const items = [
     {
-      key: 'Timeline',
+      key: "Timeline",
       show: true,
       icon: <FaUser className="banner-nav-item-name-icon" />,
     },
     {
-      key: 'Followers',
+      key: "Followers",
       show: true,
       icon: <FaHeart className="banner-nav-item-name-icon" />,
     },
     {
-      key: 'Gallery',
+      key: "Gallery",
       show: true,
       icon: <FaImages className="banner-nav-item-name-icon" />,
     },
     {
-      key: 'Change Password',
+      key: "Change Password",
       show: showPassword,
       icon: <FaKey className="banner-nav-item-name-icon" />,
     },
     {
-      key: 'Notifications',
+      key: "Notifications",
       show: showNotification,
       icon: <FaRegBell className="banner-nav-item-name-icon" />,
     },
   ];
   return items;
 };
- */

@@ -41,8 +41,13 @@ const Register = () => {
         avatarColor,
         avatarImage,
       });
-      setLoggedIn(true);
-      setStoredUsername(username);
+      if (typeof setLoggedIn === "function") {
+        setLoggedIn(true);
+      }
+      if (typeof setStoredUsername === "function") {
+        setStoredUsername(username);
+      }
+
       setAlertType("alert-success");
       Utils.dispatchUser(result, pageReload, dispatch, setUser);
     } catch (error) {

@@ -3,7 +3,6 @@ import { RenderOptions, RenderResult, render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { createBrowserHistory } from "history";
 import { BrowserRouter as Router } from "react-router-dom";
-import PropTypes from "prop-types";
 import React, { ReactElement } from "react";
 
 type ProvidersProps = {
@@ -16,9 +15,6 @@ const Providers = ({ children }: ProvidersProps) => {
       <Router>{children}</Router>
     </Provider>
   );
-};
-Providers.propTypes = {
-  children: PropTypes.node.isRequired,
 };
 
 const customRender = (
