@@ -26,6 +26,12 @@ import {
 } from "react-icons/fa";
 import React from "react";
 
+export interface IFeeling {
+  index: number | null;
+  name: string;
+  image: string;
+}
+
 export interface ISidebarItem {
   index: number;
   name: string;
@@ -84,7 +90,7 @@ export const sideBarItems: ISidebarItem[] = [
   },
 ];
 
-export const feelingsList = [
+export const feelingsList: IFeeling[] = [
   {
     index: 0,
     name: "happy",

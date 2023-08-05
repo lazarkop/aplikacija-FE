@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC } from "react";
+import React, { ChangeEvent, FC, Ref, forwardRef } from "react";
 import "./Input.scss";
 
 type InputProps = {
@@ -16,7 +16,10 @@ type InputProps = {
   style?: React.CSSProperties;
 };
 
-const Input: FC<InputProps> = (props) => (
+const Input: FC<InputProps & { ref?: Ref<HTMLInputElement> }> = forwardRef<
+  HTMLInputElement,
+  InputProps
+>((props, ref) => (
   <div className="form-row">
     {props.labelText && (
       <label htmlFor={props.name} className="form-label">
@@ -24,6 +27,7 @@ const Input: FC<InputProps> = (props) => (
       </label>
     )}
     <input
+      ref={ref}
       id={props.id}
       name={props.name}
       type={props.type}
@@ -38,6 +42,6 @@ const Input: FC<InputProps> = (props) => (
       autoComplete="false"
     />
   </div>
-);
+));
 
 export default Input;

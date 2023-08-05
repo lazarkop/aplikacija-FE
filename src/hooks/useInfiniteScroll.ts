@@ -2,8 +2,8 @@
 import React, { useCallback, useEffect } from 'react';
 
 const useInfiniteScroll = (
-  bodyRef: React.MutableRefObject<HTMLElement | null>,
-  bottomLineRef: React.MutableRefObject<HTMLElement | null>,
+  bodyRef: React.RefObject<HTMLElement>,
+  bottomLineRef: React.RefObject<HTMLElement>,
   callback: (...args: any[]) => void | any
 ): void => {
   const handleScroll = useCallback(() => {

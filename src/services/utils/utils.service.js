@@ -6,9 +6,8 @@ import {
   addUser,
   clearUser,
 } from '../../redux-toolkit/reducers/user/user.reducer';
-import { APP_ENVIRONMENT } from '../axios';
 import { avatarColors } from './static.data';
-import { floor, random, some, findIndex } from 'lodash';
+import { floor, random, some } from 'lodash';
 import millify from 'millify';
 
 export class Utils {
@@ -64,11 +63,10 @@ export class Utils {
   }
 
   static appEnvironment() {
-    if (APP_ENVIRONMENT === 'local') {
-      return 'LOCAL';
-    } else if (APP_ENVIRONMENT === 'development') {
+    const env = process.env.REACT_APP_ENVIRONMENT;
+    if (env === 'development') {
       return 'DEV';
-    } else if (APP_ENVIRONMENT === 'staging') {
+    } else if (env === 'staging') {
       return 'STG';
     }
   }
@@ -89,7 +87,7 @@ export class Utils {
       version = version.replace(/['"]+/g, '');
       id = id.replace(/['"]+/g, '');
     }
-    return `https://res.cloudinary.com/${process.env.CLOUD_NAME}/image/upload/v${version}/${id}`;
+    return `https://res.cloudinary.com/${process.env.REACT_APP_CLOUD_NAME}/image/upload/v${version}/${id}`;
   }
 
   static generateString(length) {
@@ -112,10 +110,6 @@ export class Utils {
       userFollowers,
       (user) => user._id === postCreatorId || postCreatorId === userId
     );
-  }
-
-  static checkIfUserIsOnline(username, onlineUsers) {
-    return some(onlineUsers, (user) => user === username?.toLowerCase());
   }
 
   static firstLetterUpperCase(word) {
@@ -149,22 +143,5 @@ export class Utils {
     return imageId && imageVersion
       ? this.appImageUrl(imageVersion, imageId)
       : '';
-  }
-
-  static removeUserFromList(list, userId) {
-    const index = findIndex(list, (id) => id === userId);
-    list.splice(index, 1);
-    return list;
-  }
-
-  static checkUrl(url, word) {
-    return url.includes(word);
-  }
-
-  static renameFile(element) {
-    const fileName = element.name.split('.').slice(0, -1).join('.');
-    const blob = element.slice(0, element.size, '/image/png');
-    const newFile = new File([blob], `${fileName}.png`, { type: '/image/png' });
-    return newFile;
   }
 }

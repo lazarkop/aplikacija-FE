@@ -1,11 +1,11 @@
-import { FC } from "react";
+import React, { FC } from "react";
 
-type ButtonProps = {
-  label: string;
+interface ButtonProps {
+  label: React.ReactNode;
   className?: string;
   handleClick?: () => void;
   disabled?: boolean;
-};
+}
 
 const Button: FC<ButtonProps> = (props) => {
   const { label, className, disabled, handleClick } = props;
