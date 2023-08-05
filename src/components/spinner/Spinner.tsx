@@ -1,9 +1,12 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
-// @ts-nocheck
 import PropTypes from "prop-types";
 import "./Spinner.scss";
+import { FC } from "react";
 
-const Spinner = ({ bgColor }) => {
+interface ISpinnerProps {
+  bgColor?: string;
+}
+
+const Spinner: FC<ISpinnerProps> = ({ bgColor = "#50b5ff" }) => {
   return (
     <>
       <div className="spinner">
