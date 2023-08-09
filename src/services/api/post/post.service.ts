@@ -19,6 +19,7 @@ class PostService {
   }
 
   async updatePostWithImage(postId, body) {
+    console.log(body);
     const response = await axios.put(`/post/image/${postId}`, body);
     return response;
   }

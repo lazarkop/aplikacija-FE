@@ -15,7 +15,7 @@ import Avatar from "../../avatar/Avatar";
 import Input from "../../input/Input";
 import AddPost from "../post-modal/post-add/AddPost";
 import { ImageUtils } from "../../../services/utils/image-utils.service";
-import { EditPost } from "../post-modal/post-edit/EditPost";
+import EditPost from "../post-modal/post-edit/EditPost";
 import { RootState } from "../../../redux-toolkit/store";
 
 const PostForm = () => {

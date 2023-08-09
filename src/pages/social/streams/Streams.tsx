@@ -37,6 +37,15 @@ const Streams = () => {
   useInfiniteScroll(bodyRef, bottomLineRef, fetchPostData);
   const PAGE_SIZE = 8;
 
+  function fetchPostData() {
+    let pageNum = currentPage;
+    if (currentPage <= Math.round(totalPostsCount / PAGE_SIZE)) {
+      pageNum += 1;
+      setCurrentPage(pageNum);
+      getAllPosts();
+    }
+  }
+
   const getAllPosts = async () => {
     try {
       const response = await postService.getAllPosts(currentPage);
@@ -57,15 +66,6 @@ const Streams = () => {
       }
     }
   };
-
-  function fetchPostData() {
-    let pageNum = currentPage;
-    if (currentPage <= Math.round(totalPostsCount / PAGE_SIZE)) {
-      pageNum += 1;
-      setCurrentPage(pageNum);
-      getAllPosts();
-    }
-  }
 
   const getReactionsByUsername = async () => {
     try {

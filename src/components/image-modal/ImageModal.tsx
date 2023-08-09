@@ -2,7 +2,6 @@
 // @ts-nocheck
 import PropTypes from "prop-types";
 import { FaArrowLeft, FaArrowRight, FaTimes } from "react-icons/fa";
-
 import "./ImageModal.scss";
 
 const ImageModal = ({
@@ -16,7 +15,7 @@ const ImageModal = ({
 }) => {
   return (
     <div className="image-modal-container" data-testid="image-modal">
-      <div className="image-modal-icon" onClick={onCancel}>
+      <div className="image-modal-icon">
         <FaTimes />
       </div>
       {showArrow && (
@@ -33,7 +32,12 @@ const ImageModal = ({
       )}
       <div className="image-modal-overlay">
         <div className="image-modal-box">
-          <img className="modal-image" alt="" src={`${image}`} />
+          <img
+            className="modal-image"
+            alt=""
+            src={`${image}`}
+            onClick={onCancel}
+          />
         </div>
       </div>
       {showArrow && (

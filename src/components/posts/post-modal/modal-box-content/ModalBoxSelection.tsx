@@ -14,10 +14,12 @@ import { RootState } from "../../../../redux-toolkit/store";
 
 type setSelectedPostImage = {
   setSelectedPostImage: React.Dispatch<React.SetStateAction<string>>;
+  disableImageAndGif?: boolean;
 };
 
 const ModalBoxSelection: FC<setSelectedPostImage> = ({
   setSelectedPostImage,
+  disableImageAndGif = false,
 }) => {
   const { feelingsIsOpen, gifModalIsOpen } = useSelector(
     (state: RootState) => state.modal
@@ -30,6 +32,7 @@ const ModalBoxSelection: FC<setSelectedPostImage> = ({
     feelingsIsOpen
   );
   const dispatch = useDispatch();
+  const disabledImageAndGif = disableImageAndGif;
 
   const fileInputClicked = () => {
     if (fileInputRef.current) {
@@ -50,30 +53,34 @@ const ModalBoxSelection: FC<setSelectedPostImage> = ({
       )}
       <div className="modal-box-selection" data-testid="modal-box-selection">
         <ul className="post-form-list" data-testid="list-item">
-          <li
-            className="post-form-list-item image-select"
-            onClick={fileInputClicked}
-          >
-            <Input
-              name="image"
-              ref={fileInputRef}
-              type="file"
-              className="file-input"
-              onClick={() => {
-                if (fileInputRef.current) {
-                  fileInputRef.current.value = "";
-                }
-              }}
-              handleChange={handleFileChange}
-            />
-            <img src={photo} alt="" /> Photo
-          </li>
-          <li
-            className="post-form-list-item"
-            onClick={() => dispatch(toggleGifModal(!gifModalIsOpen))}
-          >
-            <img src={gif} alt="" /> Gif
-          </li>
+          {!disabledImageAndGif && (
+            <>
+              <li
+                className="post-form-list-item image-select"
+                onClick={fileInputClicked}
+              >
+                <Input
+                  name="image"
+                  ref={fileInputRef}
+                  type="file"
+                  className="file-input"
+                  onClick={() => {
+                    if (fileInputRef.current) {
+                      fileInputRef.current.value = "";
+                    }
+                  }}
+                  handleChange={handleFileChange}
+                />
+                <img src={photo} alt="" /> Photo
+              </li>
+              <li
+                className="post-form-list-item"
+                onClick={() => dispatch(toggleGifModal(!gifModalIsOpen))}
+              >
+                <img src={gif} alt="" /> Gif
+              </li>
+            </>
+          )}
           <li
             className="post-form-list-item"
             onClick={() => setToggleFeelings(!toggleFeelings)}
