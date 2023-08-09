@@ -1,17 +1,14 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-no-undef */
-/* eslint-disable no-undef */
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-/* import Input from "@components/input/Input";
 import PropTypes from "prop-types";
-import "@components/posts/comments/comment-input/CommentInputBox.scss";
+import "./CommentInputBox.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useRef, useState } from "react";
-import { Utils } from "@services/utils/utils.service";
 import { cloneDeep } from "lodash";
-import { socketService } from "@services/socket/socket.service";
-import { postService } from "@services/api/post/post.service"; */
+import Input from "../../../input/Input";
+import { Utils } from "../../../../services/utils/utils.service";
+import { socketService } from "../../../../services/socket/socket.service";
+import { postService } from "../../../../services/api/post/post.service";
 
 const CommentInputBox = ({ post }) => {
   const { profile } = useSelector((state) => state.user);
@@ -65,5 +62,8 @@ const CommentInputBox = ({ post }) => {
       </form>
     </div>
   );
+};
+CommentInputBox.propTypes = {
+  post: PropTypes.object,
 };
 export default CommentInputBox;

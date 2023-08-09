@@ -20,9 +20,9 @@ import {
   updatePostItem,
 } from "../../../redux-toolkit/reducers/post/post.reducer";
 import CommentInputBox from "../comments/comment-input/CommentInputBox";
-import { CommentsModal } from "../comments/comments-modal/CommentsModal";
+import CommentsModal from "../comments/comments-modal/CommentsModal";
 import PostCommentSection from "../post-comment-section/PostCommentSection";
-import { ReactionsModal } from "../reactions/reactions-modal/ReactionsModal";
+import ReactionsModal from "../reactions/reactions-modal/ReactionsModal";
 import ImageModal from "../../image-modal/ImageModal";
 import { RootState } from "../../../redux-toolkit/store";
 import axios from "axios";
@@ -107,7 +107,7 @@ const Post: FC<IPostProps> = ({ post, showIcons }) => {
       {showImageModal && (
         <ImageModal
           image={`${imageUrl}`}
-          onCancel={() => setShowImageModal(!showImageModal)}
+          onCancel={() => setShowImageModal(false)}
           showArrow={false}
         />
       )}
