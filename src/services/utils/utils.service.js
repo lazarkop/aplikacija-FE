@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 import {
   addNotification,
   clearNotification,
@@ -7,7 +9,7 @@ import {
   clearUser,
 } from '../../redux-toolkit/reducers/user/user.reducer';
 import { avatarColors } from './static.data';
-import { floor, random, some } from 'lodash';
+import { findIndex, floor, random, some } from 'lodash';
 import millify from 'millify';
 
 export class Utils {
@@ -112,6 +114,10 @@ export class Utils {
     );
   }
 
+  static checkIfUserIsOnline(username, onlineUsers) {
+    return some(onlineUsers, (user) => user === username?.toLowerCase());
+  }
+
   static firstLetterUpperCase(word) {
     if (!word) return '';
     return `${word.charAt(0).toUpperCase()}${word.slice(1)}`;
@@ -143,5 +149,28 @@ export class Utils {
     return imageId && imageVersion
       ? this.appImageUrl(imageVersion, imageId)
       : '';
+  }
+
+  static getVideo(videoId, videoVersion) {
+    return videoId && videoVersion
+      ? `https://res.cloudinary.com/${process.env.REACT_APP_CLOUD_NAME}/video/upload/v${videoVersion}/${videoId}`
+      : '';
+  }
+
+  static removeUserFromList(list, userId) {
+    const index = findIndex(list, (id) => id === userId);
+    list.splice(index, 1);
+    return list;
+  }
+
+  static checkUrl(url, word) {
+    return url.includes(word);
+  }
+
+  static renameFile(element) {
+    const fileName = element.name.split('.').slice(0, -1).join('.');
+    const blob = element.slice(0, element.size, '/image/png');
+    const newFile = new File([blob], `${fileName}.png`, { type: '/image/png' });
+    return newFile;
   }
 }
