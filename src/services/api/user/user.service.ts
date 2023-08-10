@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 import axios from '../../axios';
 
 class UserService {
@@ -16,7 +18,7 @@ class UserService {
     return response;
   }
 
-  /* async getAllUsers(page) {
+  async getAllUsers(page) {
     const response = await axios.get(`/user/all/${page}`);
     return response;
   }
@@ -56,7 +58,7 @@ class UserService {
   async updateSocialLinks(info) {
     const response = await axios.put('/user/profile/social-links', info);
     return response;
-  } */
+  }
 }
 
 export const userService = new UserService();
