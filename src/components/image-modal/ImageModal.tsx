@@ -15,7 +15,7 @@ const ImageModal = ({
 }) => {
   return (
     <div className="image-modal-container" data-testid="image-modal">
-      <div className="image-modal-icon">
+      <div className="image-modal-icon" onClick={onCancel}>
         <FaTimes />
       </div>
       {showArrow && (
@@ -32,12 +32,7 @@ const ImageModal = ({
       )}
       <div className="image-modal-overlay">
         <div className="image-modal-box">
-          <img
-            className="modal-image"
-            alt=""
-            src={`${image}`}
-            onClick={onCancel}
-          />
+          <img className="modal-image" alt="" src={`${image}`} />
         </div>
       </div>
       {showArrow && (
