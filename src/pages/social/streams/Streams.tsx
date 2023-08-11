@@ -18,11 +18,26 @@ import { RootState } from "../../../redux-toolkit/store";
 import { IPost } from "../../../components/posts/post/Post";
 import axios from "axios";
 import { useAppDispatch } from "../../../hooks/useAppDispatch";
+import { followerService } from "../../../services/api/followers/follower.service";
+import { IUserDocument } from "../../../redux-toolkit/reducers/user/user.reducer";
+
+export interface IFollowerData {
+  avatarColor: string;
+  followersCount: number;
+  followingCount: number;
+  profilePicture: string;
+  postCount: number;
+  username: string;
+  uId: string;
+  _id?: string;
+  userProfile?: IUserDocument;
+}
 
 const Streams = () => {
   const allPosts = useSelector((state: RootState) => state.allPosts);
   const [posts, setPosts] = useState<IPost[]>([]);
   const [loading, setLoading] = useState(true);
+  const [following, setFollowing] = useState<IFollowerData[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPostsCount, setTotalPostsCount] = useState(0);
   const bodyRef = useRef(null);
@@ -67,6 +82,21 @@ const Streams = () => {
     }
   };
 
+  const getUserFollowing = async () => {
+    try {
+      const response = await followerService.getUserFollowing();
+      setFollowing(response.data.following);
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        Utils.dispatchNotification(
+          error.response.data.message,
+          "error",
+          dispatch
+        );
+      }
+    }
+  };
+
   const getReactionsByUsername = async () => {
     try {
       const response = await postService.getReactionsByUsername(storedUsername);
@@ -83,16 +113,14 @@ const Streams = () => {
   };
 
   useEffectOnce(() => {
+    getUserFollowing();
     getReactionsByUsername();
     if (typeof deleteSelectedPostId === "function") {
       deleteSelectedPostId();
+      dispatch(getPosts());
+      dispatch(getUserSuggestions());
     }
   });
-
-  useEffect(() => {
-    dispatch(getPosts());
-    dispatch(getUserSuggestions());
-  }, [dispatch]);
 
   useEffect(() => {
     setLoading(allPosts?.isLoading);
@@ -110,7 +138,11 @@ const Streams = () => {
       <div className="streams-content">
         <div className="streams-post" ref={bodyRef}>
           <PostForm />
-          <Posts allPosts={posts} postsLoading={loading} userFollowing={[]} />
+          <Posts
+            allPosts={posts}
+            postsLoading={loading}
+            userFollowing={following}
+          />
           <div
             ref={bottomLineRef}
             style={{ marginBottom: "50px", height: "50px" }}

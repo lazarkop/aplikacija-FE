@@ -196,6 +196,7 @@ const Post: FC<IPostProps> = ({ post, showIcons }) => {
                 <div
                   data-testid="post-image"
                   className="image-display-flex"
+                  style={{ height: "600px", backgroundColor: "#000000" }}
                   onClick={() => {
                     setImageUrl(Utils.getImage(post.imgId, post.imgVersion));
                     setShowImageModal(!showImageModal);
@@ -203,6 +204,7 @@ const Post: FC<IPostProps> = ({ post, showIcons }) => {
                 >
                   <img
                     className="post-image"
+                    style={{ objectFit: "contain" }}
                     src={`${Utils.getImage(post.imgId, post.imgVersion)}`}
                     alt=""
                   />
@@ -212,12 +214,21 @@ const Post: FC<IPostProps> = ({ post, showIcons }) => {
               {post?.gifUrl && post.bgColor === "#ffffff" && (
                 <div
                   className="image-display-flex"
+                  style={{
+                    height: "600px",
+                    backgroundColor: "#000000",
+                  }}
                   onClick={() => {
                     setImageUrl(post?.gifUrl);
                     setShowImageModal(!showImageModal);
                   }}
                 >
-                  <img className="post-image" src={`${post?.gifUrl}`} alt="" />
+                  <img
+                    className="post-image"
+                    style={{ objectFit: "contain" }}
+                    src={`${post?.gifUrl}`}
+                    alt=""
+                  />
                 </div>
               )}
               {(post?.reactions.length > 0 || post?.commentsCount > 0) && (
