@@ -8,6 +8,7 @@ import { updatePostItem } from "../../redux-toolkit/reducers/post/post.reducer";
 import Spinner from "../spinner/Spinner";
 import { GiphyUtils } from "../../services/utils/giphy-utils.service";
 import { RootState } from "../../redux-toolkit/store";
+import { Utils } from "../../services/utils/utils.service";
 
 export interface IGifObject {
   images: {
@@ -61,11 +62,11 @@ const Giphy = () => {
             className="giphy-container-picker-list"
             data-testid="unorderedList"
           >
-            {gifs.map((gif, index) => (
+            {gifs.map((gif) => (
               <li
                 className="giphy-container-picker-list-item"
                 data-testid="list-item"
-                key={index}
+                key={Utils.generateString(10)}
                 onClick={() => selectGif(gif.images.original.url)}
               >
                 <img

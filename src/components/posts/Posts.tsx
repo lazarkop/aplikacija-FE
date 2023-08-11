@@ -6,17 +6,18 @@ import Post, { IPost } from "./post/Post";
 import { PostUtils } from "../../services/utils/post-utils.service";
 import PostSkeleton from "./post/PostSkeleton";
 import { RootState } from "../../redux-toolkit/store";
+import { IFollowerData } from "../../pages/social/streams/Streams";
 
 interface IPostsProps {
   postsLoading?: boolean;
   allPosts: IPost[];
-  userFollowing: [];
+  userFollowing: IFollowerData[];
 }
 
 const Posts: FC<IPostsProps> = ({ allPosts, userFollowing, postsLoading }) => {
   const { profile } = useSelector((state: RootState) => state.user);
   const [posts, setPosts] = useState<IPost[]>([]);
-  const [following, setFollowing] = useState([]);
+  const [following, setFollowing] = useState<IFollowerData[]>([]);
   const [loading, setLoading] = useState<boolean | undefined>(true);
 
   useEffect(() => {
@@ -30,13 +31,13 @@ const Posts: FC<IPostsProps> = ({ allPosts, userFollowing, postsLoading }) => {
       {!loading &&
         posts.length > 0 &&
         posts.map((post) => (
-          <div key={Utils.generateString(10)} data-testid="posts-item">
+          <div key={post?._id} data-testid="posts-item">
             {(!Utils.checkIfUserIsBlocked(profile?.blockedBy, post?.userId) ||
               post?.userId === profile?._id) && (
               <>
                 {PostUtils.checkPrivacy(post, profile, following) && (
                   <>
-                    <Post post={post} showIcons={true} />
+                    <Post post={post} showIcons={false} />
                   </>
                 )}
               </>

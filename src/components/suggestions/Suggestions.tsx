@@ -2,15 +2,38 @@ import { useEffect, useState } from "react";
 import Avatar from "../avatar/Avatar";
 import Button from "../button/Button";
 import "./Suggestions.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux-toolkit/store";
 import { useNavigate } from "react-router-dom";
 import { IUserDocument } from "../../redux-toolkit/reducers/user/user.reducer";
+import { FollowersUtils } from "../../services/utils/followers-utils.service";
+import { addToSuggestions } from "../../redux-toolkit/reducers/suggestions/suggestions.reducer";
+import { Utils } from "../../services/utils/utils.service";
+import { filter } from "lodash";
+import axios from "axios";
 
 export const Suggestions = () => {
   const suggestions = useSelector((state: RootState) => state.suggestions);
   const [users, setUsers] = useState<IUserDocument[]>([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const followUser = async (user: IUserDocument) => {
+    try {
+      FollowersUtils.followUser(user, dispatch);
+      const result = filter(users, (data) => data?._id !== user?._id);
+      setUsers(result);
+      dispatch(addToSuggestions({ users: result, isLoading: false }));
+    } catch (error) {
+      if (axios.isAxiosError(error) && error.response) {
+        Utils.dispatchNotification(
+          error.response.data.message,
+          "error",
+          dispatch
+        );
+      }
+    }
+  };
 
   useEffect(() => {
     setUsers(suggestions?.users);
@@ -27,11 +50,11 @@ export const Suggestions = () => {
       <hr />
       <div className="suggestions-container">
         <div className="suggestions">
-          {users?.map((user, index) => (
+          {users?.map((user) => (
             <div
               data-testid="suggestions-item"
               className="suggestions-item"
-              key={index}
+              key={Utils.generateString(10)}
             >
               <Avatar
                 name={user?.username}
@@ -46,6 +69,7 @@ export const Suggestions = () => {
                   label="Follow"
                   className="button follow"
                   disabled={false}
+                  handleClick={() => followUser(user)}
                 />
               </div>
             </div>
