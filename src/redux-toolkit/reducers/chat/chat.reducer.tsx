@@ -8,12 +8,32 @@ const initialState = {
   chatList: [],
   selectedChatUser: null,
   isLoading: false,
+  chatMessages: [],
+  receiverId: "",
+  messageSent: false,
 };
 
 const chatSlice = createSlice({
   name: "chat",
   initialState,
   reducers: {
+    toggleMessageSent: (state, action) => {
+      const { messageSent } = action.payload;
+      state.messageSent = messageSent;
+    },
+    changeReceiverId: (state, action) => {
+      const { receiverId } = action.payload;
+      state.receiverId = receiverId;
+    },
+    toggleIsLoading: (state, action) => {
+      const { isLoading } = action.payload;
+      state.isLoading = isLoading;
+    },
+    addChatMessages: (state, action) => {
+      const { isLoading, chatMessages } = action.payload;
+      state.chatMessages = [...chatMessages];
+      state.isLoading = isLoading;
+    },
     addToChatList: (state, action) => {
       const { isLoading, chatList } = action.payload;
       state.chatList = [...chatList];
@@ -41,5 +61,12 @@ const chatSlice = createSlice({
   },
 });
 
-export const { addToChatList, setSelectedChatUser } = chatSlice.actions;
+export const {
+  addToChatList,
+  setSelectedChatUser,
+  addChatMessages,
+  toggleIsLoading,
+  changeReceiverId,
+  toggleMessageSent,
+} = chatSlice.actions;
 export default chatSlice.reducer;

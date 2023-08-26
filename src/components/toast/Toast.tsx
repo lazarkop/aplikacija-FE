@@ -56,16 +56,16 @@ const Toast = (props: IToastProps) => {
             X
           </button>
           <div
-            className={`toast-notification-image ${
+          /* className={`toast-notification-image ${
               toast.description.length <= 73 ? "toast-icon" : ""
-            }`}
+            }`} */
           >
             <img src={toast.icon} alt="" />
           </div>
           <div
-            className={`toast-notification-message ${
+          /* className={`toast-notification-message ${
               toast.description.length <= 73 ? "toast-message" : ""
-            }`}
+            }`} */
           >
             {toast.description}
           </div>
