@@ -1,16 +1,9 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import Avatar from "@components/avatar/Avatar";
-import Input from "@components/input/Input";
-import { Utils } from "@services/utils/utils.service";
 import { FaSearch, FaTimes } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import "@components/chat/list/ChatList.scss";
-import SearchList from "@components/chat/list/search-list/SearchList";
+import "./ChatList.scss";
 import { useCallback, useEffect, useState } from "react";
-import { userService } from "@services/api/user/user.service";
-import useDebounce from "@hooks/useDebounce";
-import { ChatUtils } from "@services/utils/chat-utils.service";
 import { cloneDeep, find, findIndex } from "lodash";
 import {
   createSearchParams,
@@ -18,10 +11,20 @@ import {
   useNavigate,
   useSearchParams,
 } from "react-router-dom";
-import { setSelectedChatUser } from "@redux/reducers/chat/chat.reducer";
-import { chatService } from "@services/api/chat/chat.service";
-import { timeAgo } from "@services/utils/timeago.utils";
-import ChatListBody from "@components/chat/list/ChatListBody";
+import ChatListBody from "./ChatListBody";
+import SearchList from "./search-list/SearchList";
+import Avatar from "../../avatar/Avatar";
+import Input from "../../input/Input";
+import { Utils } from "../../../services/utils/utils.service";
+import { userService } from "../../../services/api/user/user.service";
+import useDebounce from "../../../hooks/useDebounce";
+import { ChatUtils } from "../../../services/utils/chat-utils.service";
+import {
+  setSelectedChatUser,
+  // setSelectedUser,
+} from "../../../redux-toolkit/reducers/chat/chat.reducer";
+import { chatService } from "../../../services/api/chat/chat.service";
+import { timeAgo } from "../../../services/utils/timeago.utils";
 
 const ChatList = () => {
   const { profile } = useSelector((state) => state.user);
@@ -30,6 +33,7 @@ const ChatList = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
+  // console.log(selectedUser);
   const [componentType, setComponentType] = useState("chatList");
   let [chatMessageList, setChatMessageList] = useState([]);
   const [rendered, setRendered] = useState(false);
@@ -196,6 +200,8 @@ const ChatList = () => {
     if (!rendered) setRendered(true);
   }, [chatMessageList, profile, rendered]);
 
+  // console.log(chatMessageList);
+
   return (
     <div data-testid="chatList">
       <div className="conversation-container">
@@ -260,25 +266,24 @@ const ChatList = () => {
                   onClick={() => addUsernameToUrlQuery(data)}
                 >
                   <div className="avatar">
-                    <Avatar
-                      name={
-                        data.receiverUsername === profile?.username
-                          ? profile?.username
-                          : data?.senderUsername
-                      }
-                      bgColor={
-                        data.receiverUsername === profile?.username
-                          ? data.receiverAvatarColor
-                          : data?.senderAvatarColor
-                      }
-                      textColor="#ffffff"
-                      size={40}
-                      avatarSrc={
-                        data.receiverUsername !== profile?.username
-                          ? data.receiverProfilePicture
-                          : data?.senderProfilePicture
-                      }
-                    />
+                    {data.receiverUsername === profile?.username && (
+                      <Avatar
+                        name={data?.senderUsername}
+                        bgColor={data?.senderAvatarColor}
+                        textColor="#ffffff"
+                        size={40}
+                        avatarSrc={data?.senderProfilePicture}
+                      />
+                    )}
+                    {data.senderUsername === profile?.username && (
+                      <Avatar
+                        name={data.receiverUsername}
+                        bgColor={data?.receiverAvatarColor}
+                        textColor="#ffffff"
+                        size={40}
+                        avatarSrc={data?.receiverProfilePicture}
+                      />
+                    )}
                   </div>
                   <div
                     className={`title-text ${

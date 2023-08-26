@@ -9,6 +9,14 @@ export class ChatUtils {
   static privateChatMessages = [];
   static chatUsers = [];
 
+  static checkUsername(name, arr) {
+    return (
+      arr.find(
+        (obj) => obj.senderUsername === name || obj.receiverUsername === name
+      ) !== undefined
+    );
+  }
+
   static usersOnline(setOnlineUsers) {
     socketService?.socket?.on("user online", (data) => {
       setOnlineUsers(data);
@@ -63,6 +71,14 @@ export class ChatUtils {
         chat.receiverId === searchParamsId || chat.senderId === searchParamsId
     );
 
+    /* const defaultProfilePicture =
+      "https://res.cloudinary.com/dbwuwe27s/image/upload/v1686755396/6489d842d587366768cb94f0"; */
+
+    /* if (!receiver.profilePicture) {
+      receiver.profilePicture =
+        "https://res.cloudinary.com/dbwuwe27s/image/upload/v1686755396/6489d842d587366768cb94f0";
+    } */
+
     const messageData = {
       conversationId: chatConversationId
         ? chatConversationId.conversationId
@@ -70,7 +86,7 @@ export class ChatUtils {
       receiverId: receiver?._id,
       receiverUsername: receiver?.username,
       receiverAvatarColor: receiver?.avatarColor,
-      receiverProfilePicture: receiver?.profilePicture,
+      receiverProfilePicture: receiver.profilePicture,
       body: message.trim(),
       isRead,
       gifUrl,
@@ -137,6 +153,23 @@ export class ChatUtils {
     });
   }
 
+  static removeDuplicates(arr) {
+    const result = [];
+    const map = new Map();
+
+    for (const item of arr) {
+      if (!map.has(item._id)) {
+        map.set(item._id, true); // set any value to Map
+        result.push(item);
+      }
+    }
+    return result;
+  }
+
+  static containsObjectWithId(array, obj) {
+    return array.some((item) => item.id === obj.id);
+  }
+
   static socketIOMessageReceived(
     chatMessages,
     username,
@@ -151,6 +184,7 @@ export class ChatUtils {
       ) {
         setConversationId(data.conversationId);
         ChatUtils.privateChatMessages.push(data);
+
         chatMessages = [...ChatUtils.privateChatMessages];
         setChatMessages(chatMessages);
       }

@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-
 import logo from "../../assets/images/logo.svg";
 import {
   FaCaretDown,
