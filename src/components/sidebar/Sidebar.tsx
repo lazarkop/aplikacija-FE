@@ -111,14 +111,7 @@ const Sidebar = () => {
         userOne: profile?.username,
         userTwo: userTwoName,
       });
-    } catch (error) {
-      console.log("notifikacija ne radi izgleda");
-      /* Utils.dispatchNotification(
-        error.response.data.message,
-        "error",
-        dispatch
-      ); */
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
