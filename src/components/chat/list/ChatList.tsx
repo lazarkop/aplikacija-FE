@@ -19,10 +19,7 @@ import { Utils } from "../../../services/utils/utils.service";
 import { userService } from "../../../services/api/user/user.service";
 import useDebounce from "../../../hooks/useDebounce";
 import { ChatUtils } from "../../../services/utils/chat-utils.service";
-import {
-  setSelectedChatUser,
-  // setSelectedUser,
-} from "../../../redux-toolkit/reducers/chat/chat.reducer";
+import { setSelectedChatUser } from "../../../redux-toolkit/reducers/chat/chat.reducer";
 import { chatService } from "../../../services/api/chat/chat.service";
 import { timeAgo } from "../../../services/utils/timeago.utils";
 
@@ -33,7 +30,6 @@ const ChatList = () => {
   const [searchResult, setSearchResult] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
-  // console.log(selectedUser);
   const [componentType, setComponentType] = useState("chatList");
   let [chatMessageList, setChatMessageList] = useState([]);
   const [rendered, setRendered] = useState(false);
@@ -199,8 +195,6 @@ const ChatList = () => {
     }
     if (!rendered) setRendered(true);
   }, [chatMessageList, profile, rendered]);
-
-  // console.log(chatMessageList);
 
   return (
     <div data-testid="chatList">

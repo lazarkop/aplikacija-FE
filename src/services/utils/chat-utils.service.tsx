@@ -71,14 +71,6 @@ export class ChatUtils {
         chat.receiverId === searchParamsId || chat.senderId === searchParamsId
     );
 
-    /* const defaultProfilePicture =
-      "https://res.cloudinary.com/dbwuwe27s/image/upload/v1686755396/6489d842d587366768cb94f0"; */
-
-    /* if (!receiver.profilePicture) {
-      receiver.profilePicture =
-        "https://res.cloudinary.com/dbwuwe27s/image/upload/v1686755396/6489d842d587366768cb94f0";
-    } */
-
     const messageData = {
       conversationId: chatConversationId
         ? chatConversationId.conversationId
