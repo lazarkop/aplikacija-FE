@@ -1,26 +1,9 @@
-import { format, getISOWeek, isSameDay, subDays } from "date-fns";
+import { format } from "date-fns";
 
 class TimeAgo {
   transform(value: string | number | Date) {
     const date = typeof value === "string" ? new Date(value) : value;
     return this.timeDifference(new Date(), new Date(date));
-  }
-
-  chatMessageTransform(value: string | Date) {
-    const date = typeof value === "string" ? new Date(value) : value;
-    const yesterday = subDays(new Date(), 1);
-    if (isSameDay(date, new Date())) {
-      return "Today";
-    } else if (isSameDay(date, yesterday)) {
-      return "Yesterday";
-    } else if (
-      getISOWeek(new Date()) === getISOWeek(date) ||
-      getISOWeek(new Date()) - getISOWeek(date) === 1
-    ) {
-      return format(date, "EEEE");
-    } else {
-      return format(date, "d MMMM yyyy");
-    }
   }
 
   dayMonthYear(value: string | Date) {

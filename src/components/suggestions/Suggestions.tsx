@@ -11,6 +11,7 @@ import { addToSuggestions } from "../../redux-toolkit/reducers/suggestions/sugge
 import { Utils } from "../../services/utils/utils.service";
 import { filter } from "lodash";
 import axios from "axios";
+import { ProfileUtils } from "../../services/utils/profile-utils.service";
 
 export const Suggestions = () => {
   const suggestions = useSelector((state: RootState) => state.suggestions);
@@ -63,7 +64,12 @@ export const Suggestions = () => {
                 size={40}
                 avatarSrc={user?.profilePicture}
               />
-              <div className="title-text">{user?.username}</div>
+              <div
+                className="title-text"
+                onClick={() => ProfileUtils.navigateToProfile(user, navigate)}
+              >
+                {user?.username}
+              </div>
               <div className="add-icon">
                 <Button
                   label="Follow"

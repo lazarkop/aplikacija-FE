@@ -16,7 +16,6 @@ import GalleryImage from "../../../components/gallery-image/GalleryImage";
 import BackgroundHeader from "../../../components/background-header/BackgroundHeader";
 import { toggleDeleteDialog } from "../../../redux-toolkit/reducers/modal/modal.reducer";
 import Timeline from "../../../components/timeline/Timeline";
-import NotificationSettings from "../../../components/notification-settings/NotificationSettings";
 import ChangePassword from "../../../components/change-password/ChangePassword";
 
 const Profile = () => {
@@ -278,7 +277,6 @@ const Profile = () => {
               </>
             )}
             {displayContent === "change password" && <ChangePassword />}
-            {displayContent === "notifications" && <NotificationSettings />}
           </div>
         </div>
       </div>

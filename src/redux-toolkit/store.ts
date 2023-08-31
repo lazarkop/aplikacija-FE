@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './reducers/user/user.reducer';
 import suggestionsReducer from './reducers/suggestions/suggestions.reducer';
 import notificationReducer from './reducers/notifications/notification.reducer';
-import chatReducer from './reducers/chat/chat.reducer';
 import modalReducer from './reducers/modal/modal.reducer';
 import postReducer from './reducers/post/post.reducer';
 import postsReducer from './reducers/post/posts.reducer';
@@ -13,7 +12,6 @@ export const store = configureStore({
     user: userReducer,
     suggestions: suggestionsReducer,
     notifications: notificationReducer,
-    chat: chatReducer,
     modal: modalReducer,
     post: postReducer,
     allPosts: postsReducer,
