@@ -6,14 +6,12 @@ import ProtectedRoute from "./pages/ProtectedRoute";
 import Error from "./pages/error/Error";
 import StreamsSkeleton from "./pages/social/streams/StreamsSkeleton";
 import { Suspense, lazy } from "react";
-import ChatSkeleton from "./pages/social/chat/ChatSkeleton";
 import CardSkeleton from "./components/card-element/CardSkeleton";
 import PhotoSkeleton from "./pages/social/photos/PhotoSkeleton";
 import NotificationSkeleton from "./pages/social/notifications/NotificationSkeleton";
 import ProfileSkeleton from "./pages/social/profile/ProfileSkeleton";
 
 const Social = lazy(() => import("./pages/social/Social"));
-const Chat = lazy(() => import("./pages/social/chat/Chat"));
 const Followers = lazy(() => import("./pages/social/followers/Followers"));
 const Following = lazy(() => import("./pages/social/following/Following"));
 const Notification = lazy(
@@ -53,14 +51,6 @@ export const AppRouter = () => {
           element: (
             <Suspense fallback={<StreamsSkeleton />}>
               <Streams />
-            </Suspense>
-          ),
-        },
-        {
-          path: "chat/messages",
-          element: (
-            <Suspense fallback={<ChatSkeleton />}>
-              <Chat />
             </Suspense>
           ),
         },

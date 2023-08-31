@@ -3,12 +3,10 @@
 import "./People.scss";
 import { uniqBy } from "lodash";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { FaCircle } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Utils } from "../../../services/utils/utils.service";
 import { ProfileUtils } from "../../../services/utils/profile-utils.service";
-import { ChatUtils } from "../../../services/utils/chat-utils.service";
 import { socketService } from "../../../services/socket/socket.service";
 import { userService } from "../../../services/api/user/user.service";
 import useInfiniteScroll from "../../../hooks/useInfiniteScroll";
@@ -23,7 +21,6 @@ const People = () => {
   const { profile } = useSelector((state) => state.user);
   const [users, setUsers] = useState([]);
   const [following, setFollowing] = useState([]);
-  const [onlineUsers, setOnlineUsers] = useState([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalUsersCount, setTotalUsersCount] = useState(0);
@@ -120,7 +117,6 @@ const People = () => {
       setFollowing,
       setUsers
     );
-    ChatUtils.usersOnline(setOnlineUsers);
   }, [following, users]);
 
   return (
@@ -134,11 +130,6 @@ const People = () => {
               key={data?._id}
               data-testid="card-element-item"
             >
-              {Utils.checkIfUserIsOnline(data?.username, onlineUsers) && (
-                <div className="card-element-item-indicator">
-                  <FaCircle className="online-indicator" />
-                </div>
-              )}
               <div className="card-element-header">
                 <div className="card-element-header-bg"></div>
                 <Avatar

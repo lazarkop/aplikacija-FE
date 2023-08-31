@@ -47,12 +47,6 @@ export const sideBarItems: ISidebarItem[] = [
     iconName: "FaNewspaper",
   },
   {
-    index: 2,
-    name: "Chat",
-    url: "/app/social/chat/messages",
-    iconName: "FaComments",
-  },
-  {
     index: 3,
     name: "People",
     url: "/app/social/people",
@@ -255,7 +249,7 @@ export const notificationItems = [
   },
 ];
 
-export const tabItems = (showPassword: boolean, showNotification: boolean) => {
+export const tabItems = (showPassword: boolean) => {
   const items = [
     {
       key: "Timeline",
@@ -276,11 +270,6 @@ export const tabItems = (showPassword: boolean, showNotification: boolean) => {
       key: "Change Password",
       show: showPassword,
       icon: <FaKey className="banner-nav-item-name-icon" />,
-    },
-    {
-      key: "Notifications",
-      show: showNotification,
-      icon: <FaRegBell className="banner-nav-item-name-icon" />,
     },
   ];
   return items;
