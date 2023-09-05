@@ -70,7 +70,7 @@ const Giphy = () => {
                 onClick={() => selectGif(gif.images.original.url)}
               >
                 <img
-                  style={{ width: "470px" }}
+                  // style={{ width: "470px" }}
                   src={`${gif.images.original.url}`}
                   alt=""
                 />

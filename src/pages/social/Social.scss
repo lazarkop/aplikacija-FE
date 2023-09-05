@@ -3,7 +3,9 @@
 
   &-sidebar {
     flex: 2;
+    min-width: 200px;
     max-width: 15%;
+    margin-right: 20px;
   }
 
   &-content {
@@ -11,3 +13,25 @@
     height: 100vh;
   }
 }
+
+@media (width < 850px) {
+.dashboard {
+  display: block;
+  overflow-y: scroll;
+  height: 90vh;
+}
+.dashboard-sidebar {
+  display: inline-flex;
+  max-width: 100%;
+  margin-right: 0px;
+  height: fit-content;
+}
+.dashboard-content {
+  margin-left: 10px;
+  margin-right: -10px;
+
+  overflow:-moz-hidden-unscrollable
+
+}
+}
+

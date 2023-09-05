@@ -3,7 +3,8 @@
   align-self: center;
   justify-self: center;
   position: absolute;
-  width: 500px;
+  max-width: 500px;
+  min-width: 360px;
   overflow: hidden;
   box-sizing: border-box;
   z-index: 1;
@@ -11,6 +12,7 @@
   border-radius: 8px;
   background-color: var(--white-1);
   flex-direction: column;
+  padding-bottom: 10px;
 
   &-loading {
     grid-area: modal;
@@ -18,7 +20,8 @@
     justify-self: center;
     position: absolute;
     width: 500px;
-    overflow: hidden;
+    // overflow: hidden;
+    overflow: visible;
     box-sizing: border-box;
     z-index: 10;
     min-height: 620px;
@@ -240,10 +243,11 @@ hr {
 .modal-box-image-form {
   height: 400px;
   overflow-y: scroll;
-  display: grid;
+  display: block;
+  /* display: grid;
   grid-template-areas:
     "input"
-    "image";
+    "image"; */
 
   .post-input {
     grid-area: input;
@@ -297,6 +301,7 @@ hr {
 
   ul {
     list-style: none;
+    padding-bottom: 1px;
 
     li {
       display: inline-block;
@@ -322,7 +327,7 @@ hr {
   padding: 10px 15px;
 
   .post-form-list {
-    padding: 0;
+    padding-top: 20px;
     margin: 0;
     align-items: center;
     display: flex;
@@ -355,7 +360,7 @@ hr {
   align-self: center;
   justify-self: center;
   position: absolute;
-  width: 500px;
+  max-width: 500px;
   overflow: hidden;
   box-sizing: border-box;
   z-index: 1;
@@ -401,4 +406,45 @@ hr {
 ::-webkit-scrollbar {
   width: 0;
   background: transparent;
+}
+
+@media (width < 550px) {
+  .modal-box {
+    margin-left: 10px;
+    margin-right: 10px;
+    height: fit-content;
+    min-height: 480px;
+  }
+  .modal-box-form {
+    height: fit-content;
+    max-height: 200px;
+  }
+  .modal-box-header {
+    height: 25px;
+    white-space: nowrap;
+  }
+  .modal-giphy {
+  min-width: 370px;
+  min-height: auto;
+  }
+  .modal-giphy-header {
+    white-space: nowrap;
+  }
+}
+
+@media (width < 550px) {
+  .modal-box-form .editable {
+    font-size: 18px;
+    overflow-y: scroll;
+    max-height: 200px;
+    height: 200px;
+  }
+  .modal-box-image-form {
+    height: 300px;
+    overflow-wrap: break-word;
+    max-width: 370px;
+    //min-width: 370px;
+    display: block;
+    margin: auto;
+  }
 }

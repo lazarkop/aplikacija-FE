@@ -52,14 +52,19 @@
     &-list {
       grid-area: list;
       overflow: scroll;
-      height: 100vh;
+      max-height: 100vh;
       list-style: none;
+      object-fit: cover;
+      width: 100%;
 
       &-item {
         padding-bottom: 15px;
         padding-left: 10px;
         padding-right: 10px;
         font-size: 0.8rem;
+        //object-fit: cover;
+        width: 100%;
+        height: auto;
       }
 
       &-no-item {
@@ -71,5 +76,12 @@
         transform: translate(-50%, -50%);
       }
     }
+  }
+}
+
+@media (width < 550px) {
+  .giphy-container-picker-list-item > img {
+    object-fit: cover;
+    width: 100%;
   }
 }

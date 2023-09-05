@@ -1,6 +1,16 @@
 .comment-container {
   display: flex;
   width: 100%;
+  align-items: center;
+
+  .paper {
+    width: 40px;
+    height: 40px;
+    font-size: large;
+    border: 0px;
+    background-color: white;
+
+  }
 
   .comment-form {
     display: flex;
@@ -9,7 +19,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    width: 100%;
+    width: 90%;
 
     .form-row {
       display: contents;

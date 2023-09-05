@@ -62,3 +62,23 @@
     }
   }
 }
+
+@media (width < 550px) {
+  .modal-wrapper-container{
+    width: 370px;
+    min-height: 400px;
+    height: auto;
+  }
+  .modal-wrapper-container-body {
+    height: auto;
+  }
+}
+
+@media (max-width: 850px) and (min-aspect-ratio: 13/9) {
+  .modal-wrapper-container-body {
+    height: 370px;
+  }
+  .modal-wrapper-container-header {
+    margin-top: 100px;
+  }
+}

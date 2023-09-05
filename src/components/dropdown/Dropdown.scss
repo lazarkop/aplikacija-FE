@@ -5,6 +5,8 @@
   border-radius: 5px;
   transition: all 0.3s;
   position: relative;
+  right: 250px;
+  top: 20px;
   z-index: 2;
   margin-top: 10px;
   box-shadow: rgb(145 158 171 / 20%) 0 0 2px 0, rgb(145 158 171 / 12%) 0 12px 24px -4px;
@@ -139,5 +141,12 @@
         }
       }
     }
+  }
+}
+
+@media (width < 470px) {
+  .social-dropdown{
+    right: 175px;
+    top: 30px;
   }
 }

@@ -23,7 +23,6 @@ import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const { profile } = useSelector((state) => state.user);
-  const [environment, setEnvironment] = useState("");
   const [settings, setSettings] = useState([]);
   const [notifications, setNotifications] = useState([]);
   const [notificationCount, setNotificationCount] = useState(0);
@@ -50,14 +49,6 @@ const Header = () => {
   const deleteStorageUsername = useLocalStorage("username", "delete");
   const setLoggedIn = useLocalStorage("keepLoggedIn", "set");
   const deleteSessionPageReload = useSessionStorage("pageReload", "delete");
-
-  const backgrounColor = `${
-    environment === "DEV" || environment === "LOCAL"
-      ? "#50b5ff"
-      : environment === "STG"
-      ? "#e9710f"
-      : ""
-  }`;
 
   const getUserNotifications = async () => {
     try {
@@ -133,11 +124,6 @@ const Header = () => {
   });
 
   useEffect(() => {
-    const env = Utils.appEnvironment();
-    setEnvironment(env);
-  }, []);
-
-  useEffect(() => {
     NotificationUtils.socketIONotification(
       profile,
       notifications,
@@ -180,29 +166,19 @@ const Header = () => {
               onClick={() => navigate("/app/social/streams")}
             >
               <img src={logo} className="img-fluid" alt="" />
-              <div className="app-name">
-                Chatty
-                {environment && (
-                  <span
-                    className="environment"
-                    style={{ backgroundColor: `${backgrounColor}` }}
-                  >
-                    {environment}
-                  </span>
-                )}
-              </div>
+              <div className="app-name">Chatty</div>
             </div>
-            <div className="header-menu-toggle">
+            {/*  <div className="header-menu-toggle">
               <span className="bar"></span>
               <span className="bar"></span>
               <span className="bar"></span>
-            </div>
+            </div> */}
             <ul className="header-nav">
               <li
                 data-testid="notification-list-item"
                 className="header-nav-item active-item"
                 onClick={() => {
-                  setIsNotificationActive(true);
+                  setIsNotificationActive(!isNotificationActive);
                   setIsSettingsActive(false);
                 }}
               >
@@ -222,7 +198,7 @@ const Header = () => {
                     <li className="dropdown-li">
                       <Dropdown
                         height={300}
-                        style={{ right: "250px", top: "20px" }}
+                        style={{}}
                         data={notifications}
                         notificationCount={notificationCount}
                         title="Notifications"
@@ -274,7 +250,7 @@ const Header = () => {
                     <li className="dropdown-li">
                       <Dropdown
                         height={300}
-                        style={{ right: "150px", top: "40px" }}
+                        style={{ right: "170px", top: "40px" }}
                         data={settings}
                         notificationCount={0}
                         title="Settings"

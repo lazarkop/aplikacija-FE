@@ -10,9 +10,10 @@
   background-color: var(--white-10);
   box-shadow: 1px 5px 5px var(--gray-16);
   height: 100vh;
+  display: flex;
 
   .side-menu {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.5rem 0rem 1.5rem;
 
     .list-unstyled {
       margin: 0;
@@ -21,14 +22,13 @@
 
       li {
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
-        width: 100%;
         padding-bottom: 0.6rem;
 
         .sidebar-link {
           display: flex;
-          justify-content: flex-start;
+          justify-content: center;
           align-items: center;
           width: 85%;
           text-decoration: none;
@@ -82,4 +82,23 @@
 
 .sidebar-link:hover span {
   color: var(--dark-blue-2);
+}
+
+@media (max-width: 850px) {
+  .list-unstyled {
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+  }
+  .app-side-menu {
+    height: fit-content;
+    box-shadow: 0px 0px 0px var(--gray-16);
+  }
+  .side-menu {
+    height: fit-content;
+  }
+  .sidebar-link {
+    font-size: 1rem;
+  }
 }

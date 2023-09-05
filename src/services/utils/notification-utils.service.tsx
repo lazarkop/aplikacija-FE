@@ -4,6 +4,7 @@ import { cloneDeep, find, findIndex, remove, sumBy } from "lodash";
 import { socketService } from "../socket/socket.service";
 import { Utils } from "./utils.service";
 import { timeAgo } from "./timeago.utils";
+import { notificationService } from "../api/notifications/notification.service";
 
 export class NotificationUtils {
   static socketIONotification(
@@ -112,6 +113,31 @@ export class NotificationUtils {
     });
     setNotificationsCount(count);
     return items;
+  }
+
+  static async markMessageAsRead(
+    messageId,
+    notification,
+    setNotificationDialogContent
+  ) {
+    if (notification.notificationType !== "follows") {
+      const notificationDialog = {
+        createdAt: notification?.createdAt,
+        post: notification?.post,
+        imgUrl: notification?.imgId
+          ? Utils.appImageUrl(notification?.imgVersion, notification?.imgId)
+          : notification?.gifUrl
+          ? notification?.gifUrl
+          : notification?.imgUrl,
+        comment: notification?.comment,
+        reaction: notification?.reaction,
+        senderName: notification?.userFrom
+          ? notification?.userFrom.username
+          : notification?.username,
+      };
+      setNotificationDialogContent(notificationDialog);
+    }
+    await notificationService.markNotificationAsRead(messageId);
   }
 }
 

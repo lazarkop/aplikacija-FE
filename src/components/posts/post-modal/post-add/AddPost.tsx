@@ -185,19 +185,7 @@ const AddPost: FC<AddPostProps> = ({ selectedImage }) => {
       <PostWrapper>
         <div></div>
         {!gifModalIsOpen && (
-          <div
-            className="modal-box"
-            style={{
-              height:
-                selectedPostImage ||
-                gifUrl ||
-                image ||
-                postData?.gifUrl ||
-                postData?.image
-                  ? "700px"
-                  : "auto",
-            }}
-          >
+          <div className="modal-box">
             {loading && (
               <div
                 className="modal-box-loading"

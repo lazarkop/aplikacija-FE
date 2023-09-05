@@ -9,6 +9,8 @@ import Input from "../../../input/Input";
 import { Utils } from "../../../../services/utils/utils.service";
 import { socketService } from "../../../../services/socket/socket.service";
 import { postService } from "../../../../services/api/post/post.service";
+import Button from "../../../button/Button";
+import { FaPaperPlane } from "react-icons/fa";
 
 const CommentInputBox = ({ post }) => {
   const { profile } = useSelector((state) => state.user);
@@ -60,6 +62,11 @@ const CommentInputBox = ({ post }) => {
           handleChange={(event) => setComment(event.target.value)}
         />
       </form>
+      <Button
+        label={<FaPaperPlane />}
+        className="paper"
+        handleClick={submitComment}
+      />
     </div>
   );
 };

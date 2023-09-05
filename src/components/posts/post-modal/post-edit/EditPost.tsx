@@ -274,15 +274,7 @@ const EditPost = () => {
       <PostWrapper>
         <div></div>
         {!gifModalIsOpen && (
-          <div
-            className="modal-box"
-            style={{
-              height:
-                selectedPostImage || hasVideo || post?.gifUrl || post?.imgId
-                  ? "700px"
-                  : "auto",
-            }}
-          >
+          <div className="modal-box">
             {loading && (
               <div
                 className="modal-box-loading"
