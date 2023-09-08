@@ -24,3 +24,15 @@
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
 }
+
+@media (max-width: 850px) and (min-aspect-ratio: 13/9) {
+  .form-row {
+    margin-bottom: 0px;
+    height: 29px;
+    margin-top: 25px;
+  }
+  .form-row .form-label {
+    margin-top: 40px;
+  }
+
+}

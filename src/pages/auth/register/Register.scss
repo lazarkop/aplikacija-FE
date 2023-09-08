@@ -59,3 +59,22 @@
     }
   }
 }
+
+@media (width < 850px) {
+  .auth-form .form-input-container .checkmark-container {
+    height: 29px;
+    //display: flex;
+    //align-items: end;
+    margin-top: 20px;
+  }
+
+}
+
+@media (max-width: 850px) and (min-aspect-ratio: 13/9) {
+  .auth-form .form-input-container .checkmark-container {
+   margin-top: 15px;
+  }
+  .auth-button  {
+    margin-top: 40px;
+  }
+}

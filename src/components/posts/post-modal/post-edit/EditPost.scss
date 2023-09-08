@@ -432,9 +432,9 @@ hr {
   }
 }
 
-@media (width < 550px) {
+@media (width < 850px) {
   .modal-box-form .editable {
-    font-size: 18px;
+    font-size: 20px;
     overflow-y: scroll;
     max-height: 200px;
     height: 200px;
@@ -446,5 +446,20 @@ hr {
     //min-width: 370px;
     display: block;
     margin: auto;
+  }
+  .modal-box {
+    //max-width: px;
+    min-height: 370px;
+    height: 370px;
+    overflow: scroll;
+  }
+}
+
+@media (max-width: 850px) and (min-aspect-ratio: 13/9) {
+  .modal-giphy {
+    margin-top: 220px;
+  }
+  .post-form-list-item {
+    height: 40px;
   }
 }

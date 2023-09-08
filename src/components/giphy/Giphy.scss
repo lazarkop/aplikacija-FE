@@ -79,9 +79,19 @@
   }
 }
 
-@media (width < 550px) {
+@media (width < 850px) {
   .giphy-container-picker-list-item > img {
     object-fit: cover;
     width: 100%;
   }
 }
+
+@media (max-width: 850px) and (min-aspect-ratio: 13/9) {
+  .giphy-container-picker {
+    display: block;
+  }
+  .giphy-container-picker-form {
+    height: 50px;
+  }
+}
+

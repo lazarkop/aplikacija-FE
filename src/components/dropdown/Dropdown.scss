@@ -150,3 +150,20 @@
     top: 30px;
   }
 }
+
+@media (max-width: 850px) and (min-aspect-ratio: 13/9) {
+  .social-dropdown {
+    height: 320px;
+    overflow: scroll;
+  }
+  .social-card {
+    height: 320px;
+  }
+  .social-card-body {
+    height: 320px;
+  }
+  .social-card-body-info {
+    height: 270px;
+  }
+
+}
