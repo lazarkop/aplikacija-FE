@@ -126,51 +126,53 @@ const Post: FC<IPostProps> = ({ post, showIcons }) => {
       <div className="post-body" data-testid="post">
         <div className="user-post-data">
           <div className="user-post-data-wrap">
-            <div className="user-post-image">
-              <Avatar
-                name={post?.username}
-                bgColor={post?.avatarColor}
-                textColor="#ffffff"
-                size={50}
-                avatarSrc={post?.profilePicture}
-              />
-            </div>
-            <div className="user-post-info">
-              <div className="inline-title-display">
-                <h5 data-testid="username">
-                  {post?.username}
-                  {post?.feelings && (
-                    <div
-                      className="inline-display"
-                      data-testid="inline-display"
-                    >
-                      is feeling{" "}
-                      <img
-                        className="feeling-icon"
-                        src={`${getFeeling(post?.feelings)}`}
-                        alt=""
-                      />{" "}
-                      <div>{post?.feelings}</div>
+            <div className="user-post-image-and-info">
+              <div className="user-post-image">
+                <Avatar
+                  name={post?.username}
+                  bgColor={post?.avatarColor}
+                  textColor="#ffffff"
+                  size={50}
+                  avatarSrc={post?.profilePicture}
+                />
+              </div>
+              <div className="user-post-info">
+                <div className="inline-title-display">
+                  <h5 data-testid="username">
+                    {post?.username}
+                    {post?.feelings && (
+                      <div
+                        className="inline-display"
+                        data-testid="inline-display"
+                      >
+                        is feeling{" "}
+                        <img
+                          className="feeling-icon"
+                          src={`${getFeeling(post?.feelings)}`}
+                          alt=""
+                        />{" "}
+                        <div>{post?.feelings}</div>
+                      </div>
+                    )}
+                  </h5>
+                  {showIcons && (
+                    <div className="post-icons" data-testid="post-icons">
+                      <FaPencilAlt className="pencil" onClick={openPostModal} />
+                      <FaRegTrashAlt
+                        className="trash"
+                        onClick={openDeleteDialog}
+                      />
                     </div>
                   )}
-                </h5>
-                {showIcons && (
-                  <div className="post-icons" data-testid="post-icons">
-                    <FaPencilAlt className="pencil" onClick={openPostModal} />
-                    <FaRegTrashAlt
-                      className="trash"
-                      onClick={openDeleteDialog}
-                    />
-                  </div>
+                </div>
+
+                {post?.createdAt && (
+                  <p className="time-text-display" data-testid="time-display">
+                    {timeAgo.transform(post?.createdAt)} &middot;{" "}
+                    {getPrivacy(post?.privacy)}
+                  </p>
                 )}
               </div>
-
-              {post?.createdAt && (
-                <p className="time-text-display" data-testid="time-display">
-                  {timeAgo.transform(post?.createdAt)} &middot;{" "}
-                  {getPrivacy(post?.privacy)}
-                </p>
-              )}
             </div>
             <hr />
             <div

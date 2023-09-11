@@ -21,6 +21,12 @@
       text-align: right;
     }
 
+    .user-post-image-and-info {
+      display: flex;
+      flex-wrap: nowrap;
+      width: 100%;
+    }
+
     .user-post-image {
       .post-rounded-circle {
         width: 40px;
@@ -39,8 +45,10 @@
       .inline-title-display {
         display: grid;
         grid-template-areas: "name . . icons";
-        grid-template-columns: auto 1fr 1fr 100px;
+        //grid-template-columns: auto 1fr 1fr 100px;
+        grid-template-columns: 1fr 1fr;
         grid-template-rows: 1fr;
+        justify-content: space-between;
 
         h5 {
           grid-area: name;
@@ -59,6 +67,8 @@
           grid-area: icons;
           text-align: right;
           cursor: pointer;
+          padding-right: 35px;
+          white-space: nowrap;
 
           .trash {
             color: var(--red-1);
@@ -162,4 +172,16 @@
       }
     }
   }
+}
+
+@media (width < 850px) {
+  .post-body .user-post-data-wrap .user-post-info .inline-title-display h5 {
+    white-space: nowrap;
+  }
+  .post-body .user-post-data-wrap .user-post-info {
+    flex-wrap: nowrap;
+  }
+  /* .post-body {
+    margin-top: 50px;
+  } */
 }

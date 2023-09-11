@@ -18,6 +18,8 @@
 
     .profile-content {
       grid-area: content;
+      //width: fit-content;
+      min-width: 370px;
 
       .imageGrid-container {
         display: grid;

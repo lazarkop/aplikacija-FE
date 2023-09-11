@@ -81,3 +81,9 @@
     }
   }
 }
+
+@media (max-width: 850px) and (min-aspect-ratio: 13/9) {
+  .post-form {
+    margin-bottom: 30px;
+  }
+}

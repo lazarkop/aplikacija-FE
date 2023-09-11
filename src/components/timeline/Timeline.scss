@@ -10,7 +10,7 @@
 
     &-side {
       grid-area: side;
-      height: 100vh;
+      height: auto;
 
       &-count {
         background-color: var(--white-1);
@@ -204,7 +204,7 @@
       grid-area: main;
       overflow: hidden;
       margin-bottom: 80px;
-      margin-left: 20px;
+      //margin-left: 20px;
     }
   }
 }
@@ -218,5 +218,32 @@
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     row-gap: 20px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .timeline-wrapper-container-main {
+    //margin-left: 0;
+  }
+  .timeline-wrapper-container-side {
+   //margin-bottom: 50px;
+  }
+}
+
+@media screen and (width < 600px) and (height < 700px) {
+  .timeline-wrapper-container-side {
+    //margin-bottom: 50px;
+  }
+}
+
+@media (max-width: 850px) and (min-aspect-ratio: 13/9) {
+  .timeline-wrapper-container-main {
+    //margin-top: 50px;
+  }
+  .timeline-wrapper-container-side {
+    //margin-bottom: 50px;
+    //padding-bottom: 20px;
+    height: auto;
+
   }
 }
