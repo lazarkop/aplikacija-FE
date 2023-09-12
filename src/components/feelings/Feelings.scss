@@ -54,3 +54,9 @@
     }
   }
 }
+
+@media (width < 850px) {
+  .feelings-container {
+    bottom: 0px;
+  }
+}

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 import { useDispatch, useSelector } from "react-redux";
 import "./Feelings.scss";
 import {
@@ -7,8 +9,11 @@ import {
 import { IFeeling, feelingsList } from "../../services/utils/static.data";
 import { RootState } from "../../redux-toolkit/store";
 
-const Feelings = () => {
-  const { feelingsIsOpen } = useSelector((state: RootState) => state.modal);
+// eslint-disable-next-line react/prop-types
+const Feelings = ({ setToggleFeelings }) => {
+  const feelingsIsOpen = useSelector(
+    (state: RootState) => state.modal.feelingsIsOpen
+  );
   const dispatch = useDispatch();
 
   const selectFeeling = (feeling: IFeeling) => {
@@ -27,7 +32,10 @@ const Feelings = () => {
               data-testid="feelings-item"
               className="feelings-container-picker-list-item"
               key={feeling.index}
-              onClick={() => selectFeeling(feeling)}
+              onClick={() => {
+                selectFeeling(feeling);
+                setToggleFeelings(false);
+              }}
             >
               <img src={feeling.image} alt="" /> <span>{feeling.name}</span>
             </li>

@@ -24,6 +24,7 @@ const ModalBoxSelection: FC<setSelectedPostImage> = ({
   const { feelingsIsOpen, gifModalIsOpen } = useSelector(
     (state: RootState) => state.modal
   );
+  console.log(feelingsIsOpen, gifModalIsOpen);
   const { post } = useSelector((state: RootState) => state.post);
   const feelingsRef = useRef<HTMLDivElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -48,7 +49,7 @@ const ModalBoxSelection: FC<setSelectedPostImage> = ({
     <>
       {toggleFeelings && (
         <div ref={feelingsRef}>
-          <Feelings />
+          <Feelings setToggleFeelings={setToggleFeelings} />
         </div>
       )}
       <div className="modal-box-selection" data-testid="modal-box-selection">
@@ -83,7 +84,9 @@ const ModalBoxSelection: FC<setSelectedPostImage> = ({
           )}
           <li
             className="post-form-list-item"
-            onClick={() => setToggleFeelings(!toggleFeelings)}
+            onClick={() => {
+              setToggleFeelings(!toggleFeelings);
+            }}
           >
             <img src={feeling} alt="" /> Feeling
           </li>

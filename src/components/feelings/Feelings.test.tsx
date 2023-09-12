@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck
 import Feelings from "./Feelings";
 import ModalBoxContent from "../posts/post-modal/modal-box-content/ModalBoxContent";
 import { render, screen } from "../../test.utils";

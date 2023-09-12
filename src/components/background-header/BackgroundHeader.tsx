@@ -141,7 +141,11 @@ const BackgroundHeader = ({
           )}
           <div
             data-testid="profile-banner-image"
-            className="profile-banner-image"
+            className={
+              user?.bgImageId
+                ? "profile-banner-image"
+                : "profile-banner-no-image"
+            }
             style={{
               background: `${!selectedBackground ? user?.avatarColor : ""}`,
             }}
@@ -232,7 +236,7 @@ const BackgroundHeader = ({
                   data-testid="add-cover-photo"
                   onClick={() => onAddProfileClick()}
                 >
-                  <FaCamera className="camera" /> <span>Add Cover Photo</span>
+                  <FaCamera className="camera" /> <span>Add Photo</span>
                 </label>
                 {isActive && <BackgroundSelectDropdown />}
               </div>

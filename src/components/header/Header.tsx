@@ -168,11 +168,6 @@ const Header = () => {
               <img src={logo} className="img-fluid" alt="" />
               <div className="app-name">Chatty</div>
             </div>
-            {/*  <div className="header-menu-toggle">
-              <span className="bar"></span>
-              <span className="bar"></span>
-              <span className="bar"></span>
-            </div> */}
             <ul className="header-nav">
               <li
                 data-testid="notification-list-item"

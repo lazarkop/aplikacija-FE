@@ -28,7 +28,8 @@
       display: flex;
       cursor: pointer;
       align-items: center;
-      margin-right: 50px;
+      margin-right: 45px;
+
 
       .app-name-skeleton {
         width: 80px;
@@ -95,7 +96,6 @@
         display: flex;
 
         .header-list-icon {
-          width: 50px;
           text-align: center;
         }
 
@@ -126,6 +126,8 @@
 
         .profile-image {
           margin-left: 10px;
+          width: 45px;
+          flex-shrink: 0;
         }
 
         .profile-name {
