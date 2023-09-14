@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-import logo from "../../assets/images/logo.svg";
+// import logo from "../../assets/images/logo.svg";
+// import logo3 from "../../assets/images/logo3.jpeg";
 import { FaCaretDown, FaCaretUp, FaRegBell } from "react-icons/fa";
 import "./Header.scss";
 import Avatar from "../avatar/Avatar";
@@ -165,8 +166,8 @@ const Header = () => {
               data-testid="header-image"
               onClick={() => navigate("/app/social/streams")}
             >
-              <img src={logo} className="img-fluid" alt="" />
-              <div className="app-name">Chatty</div>
+              {/* <img src={logo3} className="img-fluid" alt="" /> */}
+              {/* <div className="app-name">Chatty</div> */}
             </div>
             <ul className="header-nav">
               <li

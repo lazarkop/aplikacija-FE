@@ -6,7 +6,7 @@ import Login from "../login/Login";
 import Register from "../register/Register";
 import { Utils } from "../../../services/utils/utils.service";
 import PageLoader from "../../../components/page-loader/PageLoader";
-import backgroundImage from "../../../assets/images/backgroundImage.jpg";
+import backgroundImage from "../../../assets/images/city-cartoonish.jpg";
 
 const AuthTabs = () => {
   const [type, setType] = useState("Sign In");
