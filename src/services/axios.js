@@ -12,7 +12,7 @@ if (APP_ENVIRONMENT === 'local') {
 } else if (APP_ENVIRONMENT === 'staging') {
   BASE_ENDPOINT = 'https://api.stg.<your-backend-domain>';
 } else if (APP_ENVIRONMENT === 'production') {
-  BASE_ENDPOINT = 'https://api.socialhub-api.onrender.com';
+  BASE_ENDPOINT = 'https://api-socialhub-api.onrender.com';
 }
 
 const BASE_URL = `${BASE_ENDPOINT}/api/v1`;
