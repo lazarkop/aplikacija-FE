@@ -2,6 +2,10 @@
 @import "src/colors/variables.scss";
 @import "react-loading-skeleton/dist/skeleton.css";
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -18,6 +22,8 @@
 }
 
 body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
   margin: 0;
   overflow: hidden;
   font-family: "DM Sans", sans-serif;

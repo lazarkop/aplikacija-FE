@@ -8,3 +8,15 @@
   border-bottom-right-radius: 15px;
   transition: all 0.3s;
 }
+
+@media (width < 850px) {
+  .auth-inner {
+    width: 360px;
+  }
+}
+
+@media (max-width: 850px) and (min-aspect-ratio: 13/9) {
+  .auth-inner {
+    padding-bottom: 0px;
+  }
+}
