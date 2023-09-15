@@ -17,6 +17,7 @@ export const store = configureStore({
     allPosts: postsReducer,
     userPostReactions: userPostReactionReducer,
   },
+  devTools: false,
 });
 
 export type RootState = ReturnType<typeof store.getState>;
