@@ -3,7 +3,7 @@ import axios from 'axios';
 export let BASE_ENDPOINT = '';
 
 // when developing locally, change this value to local
-export const APP_ENVIRONMENT = 'local';
+export const APP_ENVIRONMENT = 'production';
 
 if (APP_ENVIRONMENT === 'local') {
   BASE_ENDPOINT = 'http://localhost:5000';
@@ -12,7 +12,7 @@ if (APP_ENVIRONMENT === 'local') {
 } else if (APP_ENVIRONMENT === 'staging') {
   BASE_ENDPOINT = 'https://api.stg.<your-backend-domain>';
 } else if (APP_ENVIRONMENT === 'production') {
-  BASE_ENDPOINT = 'https://api.<your-backend-domain>';
+  BASE_ENDPOINT = 'https://api.socialhub-api.onrender.com';
 }
 
 const BASE_URL = `${BASE_ENDPOINT}/api/v1`;
